@@ -38,15 +38,16 @@ def table_view(request):
                     warehouse.volume_after_unload += truck.current_load
 
                     sio2_after = warehouse.sio2_percentage_after
-                    warehouse.sio2_percentage_after = round((((weight_before * (warehouse.sio2_percentage_before / 100)) +
-                                                        (truck.current_load * (truck.sio2_percentage / 100)))
-                                                       / warehouse.volume_after_unload) * 100, 1)
+                    warehouse.sio2_percentage_after = round(
+                        (((weight_before * (warehouse.sio2_percentage_before / 100)) +
+                          (truck.current_load * (truck.sio2_percentage / 100)))
+                         / warehouse.volume_after_unload) * 100, 1)
                     warehouse.sio2_percentage_before = sio2_after
 
                     fe_after = warehouse.fe_percentage_after
                     warehouse.fe_percentage_after = round((((weight_before * (warehouse.fe_percentage_before / 100)) +
-                                                        (truck.current_load * (truck.fe_percentage / 100)))
-                                                       / warehouse.volume_after_unload) * 100, 1)
+                                                            (truck.current_load * (truck.fe_percentage / 100)))
+                                                           / warehouse.volume_after_unload) * 100, 1)
                     warehouse.sio2_percentage_before = sio2_after
 
                     warehouse.save()
